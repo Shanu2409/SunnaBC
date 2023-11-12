@@ -5,6 +5,8 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
 import android.widget.TextView
+import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.RecyclerView
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
@@ -14,9 +16,15 @@ import retrofit2.create
 import kotlin.math.log
 
 class MainActivity : AppCompatActivity() {
+
+    lateinit var myRecyclerView : RecyclerView
+    lateinit var myAdapter: MyAdapter
+    @SuppressLint("MissingInflatedId")
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
+
+        myRecyclerView = findViewById(R.id.recyclerView)
 
         val retrofitBuilder = Retrofit.Builder()
             .baseUrl("https://deezerdevs-deezer.p.rapidapi.com/")
@@ -24,18 +32,16 @@ class MainActivity : AppCompatActivity() {
             .build()
             .create(ApiInterface::class.java)
 
-        val retrofitData = retrofitBuilder.getData("arijit")
+        val retrofitData = retrofitBuilder.getData("Arijit Singh")
 
         // after typing enqueue its auto complete (ctrl + shift + space)
         retrofitData.enqueue(object : Callback<MyData?> {
             @SuppressLint("SetTextI18n")
             override fun onResponse(call: Call<MyData?>, response: Response<MyData?>) {
-                val dataList = response.body()?.data?.get(0)?.title
-                // loop throguth all the data and store the title into an array
-                val txt = findViewById<TextView>(R.id.txt)
-                for(i in 0..response.body()?.data?.size!!-1){
-                    txt.text = txt.text.toString() + "\n" + response.body()?.data?.get(i)?.title.toString()
-                }
+                val dataList = response.body()?.data
+                myAdapter = MyAdapter(this@MainActivity, dataList!!)
+                myRecyclerView.adapter = myAdapter
+                myRecyclerView.layoutManager = LinearLayoutManager(this@MainActivity)
                 Log.d("onProcess", dataList.toString())
             }
 
