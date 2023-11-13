@@ -19,12 +19,15 @@ class MyAdapter(val context: Activity, val data: List<Data>):
         val musictitle : TextView
         val play: ImageButton
         val pause: ImageButton
+        val artistName: TextView
+
 
         init {
             img = itemView.findViewById(R.id.albumImg)
             musictitle = itemView.findViewById(R.id.title)
             play = itemView.findViewById(R.id.btnPlay)
             pause = itemView.findViewById(R.id.btnPause)
+            artistName = itemView.findViewById(R.id.aritst)
 
         }
     }
@@ -41,9 +44,12 @@ class MyAdapter(val context: Activity, val data: List<Data>):
     override fun onBindViewHolder(holder: MyViewHolder, position: Int) {
         val currentData = data[position]
 
+
+
         val mediaPlay = MediaPlayer.create(context, currentData.preview.toUri())
 
         holder.musictitle.text = currentData.title
+        holder.artistName.text = "Artist : " + currentData.artist.name
         Picasso.get().load(currentData.album.cover).into(holder.img);
 
         holder.play.setOnClickListener {
