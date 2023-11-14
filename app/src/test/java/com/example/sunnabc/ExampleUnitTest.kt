@@ -1,4 +1,4 @@
-package com.example.sunnabc
+package com.shanu.sunnabc
 
 import org.junit.Test
 

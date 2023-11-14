@@ -4,11 +4,11 @@ plugins {
 }
 
 android {
-    namespace = "com.example.sunnabc"
+    namespace = "com.shanu.sunnabc"
     compileSdk = 34
 
     defaultConfig {
-        applicationId = "com.example.sunnabc"
+        applicationId = "com.shanu.sunnabc"
         minSdk = 28
         targetSdk = 33
         versionCode = 1

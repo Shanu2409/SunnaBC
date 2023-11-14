@@ -1,4 +1,4 @@
-package com.example.sunnabc
+package com.shanu.sunnabc
 
 import retrofit2.Call
 import retrofit2.http.*

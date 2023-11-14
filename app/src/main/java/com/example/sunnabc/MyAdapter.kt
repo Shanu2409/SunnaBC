@@ -1,4 +1,4 @@
-package com.example.sunnabc
+package com.shanu.sunnabc
 
 import android.app.Activity
 import android.media.MediaPlayer
@@ -8,6 +8,7 @@ import android.view.ViewGroup
 import android.widget.ImageButton
 import android.widget.ImageView
 import android.widget.TextView
+import com.shanu.sunnabc.R
 import androidx.core.net.toUri
 import androidx.recyclerview.widget.RecyclerView
 import com.squareup.picasso.Picasso

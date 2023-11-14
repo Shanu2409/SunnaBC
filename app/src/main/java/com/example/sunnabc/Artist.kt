@@ -1,4 +1,4 @@
-package com.example.sunnabc
+package com.shanu.sunnabc
 
 data class Artist(
     val id: Int,
